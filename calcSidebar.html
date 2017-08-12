@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<!--
+Page for Calculator Sidebar and interface between client and google server
+
+-->
+
+<link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons1.css">
+<html>
+  <head>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <title>Calculator</title>
+    <base target="_top">
+  </head>
+  <body>
+    <style>
+    .sidebar {
+      bottom: 50px;
+      left: 15px;
+      right: 15px;
+      top: 0px;
+    }
+    </style>
+    
+    <div id="calcDiv" class="sidebar" >
+
+    <form id="calculator">
+     <input type="button" class="action" id="caseMenu" value="Case Steps" onclick="caseWindow()"/>
+     <input type="button" id="2yr" class="action" value="2 Year Contract"/>
+     <input type="button" class="action" id="oRate" value="Base Rate"/>
+     <div id="contDiv" style="display:none">
+     <table>
+       <tr>
+         <td>
+         <input type="text" id="basePrice" value="Enter Full Rate"  name="baseInput"/>
+         <input type="button" class="share" value="Calculate"  onclick="twoYrContract()" /></td>
+       </tr>
+       <tr>
+         <td><strong><span style="font-size: 18px">1st Year Monthly:</span></strong></td>
+         <td><strong><span style="font-size: 18px; color:#ff9900;"><div id="contract1"></div></span></strong></td>
+       </tr>
+       <tr>
+         <td><strong><span style="font-size: 18px">2nd Year Monthly:</span></strong></td>
+         <td>
+         <strong><span style="font-size: 18px; color:#ff9900;"><div id="contract2"></div></span></strong>
+         </td>
+       </tr>
+     </table>      
+     </div>
+     <div id="revRateDiv" style="display:none">
+       <table>
+         <tr>
+           <td><input type="checkbox" id="revAdmin" value="revAdmin" checked><label><strong>Admin</strong></label></td>
+           <td><input type="checkbox" id="revFrf" value="revFrf" checked><label><strong>FRF</strong></label></td>
+           <td><input type="checkbox" id="revErf" value="revErf" checked><label><strong>ERF</strong></label></td>
+           <td><input type="button" class="share" value="FRF Override" id="frfOver" onclick="frfOverride()" /></td>
+         </tr>
+       </table>
+       <table>
+         <tr>
+           <td><input type="text" id="baseRev" value="Enter Full Rate" name="revInput"/></td>
+           <td><input type="button" class="share" value="Calculate"  onclick="reverseRate()" /></td> 
+         </tr>
+       </table>
+       <table>
+         <tr>
+         <td><strong><span style="font-size: 18px">Base Rate:</span></strong></td>
+         <td><strong><span style="font-size: 18px; color:#ff9900;"><div id="revOut"></div></span></strong>
+         </tr>
+       </table>
+     </div>
+      <table>
+        <tr>
+          <td><label><b>Waste:</b></label></td>
+          <td><input type="text" id="wasteInput" name="wasteInput"/></td>
+        </tr>  
+        <tr>
+          <td><label><b>Recycling:</b></label></td>
+          <td><input type="text" id="recyclingInput" name="recyInput"/></td>
+        </tr>
+        <tr>
+          <td><label><b>Delivery:</b></label></td>
+          <td><input type="text" id="deliveryInput" name="delInput"/></td>
+        </tr>  
+       </table>
+       <table>
+        <tr><span style="padding: 3px">
+          <td><span style="padding: 3px"><input type="checkbox" id="adminFee" value="admin" checked><label><strong>Admin</strong></label><br></td></span>
+          <td><input type="checkbox" id="frf" value="frf" checked><label><strong>FRF</strong></label><br></td>
+          <td><input type="checkbox" id="erf" value="erf" checked><label><strong>ERF</strong></label><br></td>
+          <td><input type="button" class="share" value="FRF Override" id="frfOver" onclick="frfOverride()" /></td>
+        </tr>
+       </table>
+       <table>
+       <tr>
+       <td>
+        <input type="button" class="action" id="MNDiv" value="Include Minnesota Tax"/>
+       </td>
+       <td>
+        <div id="MNTax" class="block form-group" style="display:none" >
+                <select id="county">
+                  <option selected="Other">Not Applicable</option>
+                  <option value="Hennepin">Hennepin</option>
+                  <option value="Washington">Washington</option>
+                  <option value="Ramsey">Ramsey</option>
+                  <option value="Sterns">Sterns</option>
+                </select>
+        </div>
+        </td>
+       </table>
+      <table>
+        <tr>
+          <td><input type="button" class="share" value="Calculate" onclick="calcInput()" /></td>
+          <td><input type="reset" value="Reset" onclick="zeroTotal()"></td>
+          <td>
+        </tr>
+        <tr>
+          <td><strong><span style="font-size: 18px"> Estimated Total:</span></strong></td>
+          <td><strong><span style="font-size: 18px; color:#ff9900;">
+            <div style="padding: 8px" id="total"></div></span></strong></td>
+        </tr>
+        <tr>
+     </table>
+
+    </form>
+    </div>
+   <script type="text/javascript" src="js/script.js"></script>
+   <script>
+/********************************************************************************************************************
+                                                OBJECT CONSTRUCTORS
+********************************************************************************************************************/
+   function GlobObj(rate, bool){
+     this.rate = rate;
+     this.bool = bool;
+   }
+   
+   globObj1 = new GlobObj(0,false);
+   /*
+   
+   //CURRENT FEES OBJECT
+   function FeeObj(admin, frf, erf){
+     this.admin = admin;
+     this.frf = frf;
+     this.erf = erf;
+   }*/
+   /*
+   function getCurrentFees(){
+    var fees = google.script.run.withSuccessHandler(setFees).feeObj();
+    
+    function getAdmin(){
+      return fees.admCell;
+    }
+    
+    function getFRF(){
+      return fees.frfCell;
+    }
+    function getERF(){
+      return fees.erfCell;
+    }
+   );*/
+    
+/********************************************************************************************************************
+                                 CLIENT SIDE SIDEBAR to SERVER SIDE .gs method calls
+                                 
+Handles calls from CLIENT SIDE input to SERVERSIDE
+
+google.script.run.withSuccessHandler(<return output method>).<.gs function>();
+********************************************************************************************************************/
+
+
+//Standard form calculator input call subCalc(w, r, d, a, f, e, c, frfObj, bool).gs
+    function calcInput(){
+       var waste = document.getElementById('wasteInput').value;
+       var recy = document.getElementById('recyclingInput').value;
+       var del = document.getElementById('deliveryInput').value;
+       var adm = document.getElementById('adminFee').checked;
+       var frf = document.getElementById('frf').checked;
+       var erf = document.getElementById('erf').checked;
+       var county = $("#county option:selected").text();
+       
+       if(globObj1.bool === false){
+         google.script.run.withSuccessHandler(calcOutput).subCalc(waste, recy, del, adm, frf, erf, county, globObj1.rate, globObj1.bool);
+       } else if(globObj1.bool === true){
+         google.script.run.withSuccessHandler(calcOutput).subCalc(waste, recy, del, adm, frf, erf, county, globObj1.rate, globObj1.bool);
+         globObj1.bool=false;
+       }
+     }
+     
+//Calculate reverse rate input reverseRate()
+   function reverseRate(){
+       var rate = document.getElementById('baseRev').value;
+       var adm = document.getElementById('revAdmin').checked;
+       var frf = document.getElementById('revFrf').checked;
+       var erf = document.getElementById('revErf').checked;
+       
+       if(globObj1.bool === false) {
+         google.script.run.withSuccessHandler(revOutput).reversePercentage(rate, adm, frf, erf, globObj1.rate, globObj1.bool);
+       } else if(globObj1.bool === true) {
+         google.script.run.withSuccessHandler(revOutput).reversePercentage(rate, adm, frf, erf, globObj1.rate, globObj1.bool);    
+       }
+   }
+//Calculate 2 year contract rates / month     
+  function twoYrContract(){
+      var basePrice = document.getElementById('basePrice').value;
+       
+      google.script.run.withSuccessHandler(contractOutput).contractCalc(basePrice);
+   }
+
+//FRF Override handler
+  function frfOverride(){
+      google.script.run.withSuccessHandler(setFRFOverride).frfPrompt();
+  }
+
+// Case Steps handler
+  function caseWindow(){
+    google.script.run.withSuccessHandler().caseStepsWindow();
+  }
+  
+// ADMIN Console
+  function caseStepsPriceChange(){
+    google.script.run.withSuccessHandler().adminWindow();
+  }
+  
+// Zero out the total
+  function zeroTotal(){
+    var div = document.getElementById("total").innerHTML = " $0.00";
+ }
+  
+
+
+//************************************************************************************************************
+//                                          Onlick Button JSON Handlers 
+//************************************************************************************************************
+     
+     //Minnesota Tax button
+     $(document).ready(function(){
+       $("#MNDiv").on("click", function() {
+         $("#MNTax").slideToggle();
+        });
+     });
+     
+     //Base Rate Button
+     $(document).ready(function(){
+       $("#2yr").on("click", function() {
+         $("#contDiv").slideToggle();
+         if($("#revRateDiv").is(":visible")){
+            $("#revRateDiv").hide();
+         }
+        });
+     });
+     
+     //2 Year Contract Button
+     $(document).ready(function(){
+       $("#oRate").on("click", function() {
+         $("#revRateDiv").slideToggle();
+         if($("#contDiv").is(":visible")){
+            $("#contDiv").hide();
+         } 
+        });
+     });
+
+     
+/********************************************************************************************************
+                                             .gs to HTML output
+                                             
+     Handles server side response and inner HTML output
+*********************************************************************************************************/
+     
+  function contractOutput(contractArray){ 
+    document.getElementById("contract1").innerHTML = "$" +
+     contractArray[0];
+     
+    document.getElementById("contract2").innerHTML = "$" +
+     contractArray[1];
+  }
+     
+  function calcOutput(tot){
+    var div = document.getElementById("total").innerHTML = " $"+tot;
+  }
+  
+  function revOutput(rate){
+    document.getElementById("revOut").innerHTML = " $"+rate;
+  }
+  
+/*********************************************************************************************************
+                                          SET GLOBAL OBJECT VARIABLES
+**********************************************************************************************************/
+  
+  function setFRFOverride(frfObj){
+    globObj1.rate = frfObj.rate;
+    globObj1.bool= frfObj.bool;  
+  }
+  /*
+  function setFees(feeO){
+    var FeeObj
+  }*/
+
+   </script>
+   
+   
+   </body>
+
+
+</html>
+   
+   
+
+

@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<!--
+Page for displaying case steps and managing case step information
+
+-->
+<!--RS BLUE #1f3f74 -->
+
+<link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons1.css">
+<html>
+  <head>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <title>Calculator</title>
+    <base target="_top">
+    <style>
+    .sidebar {
+      bottom: 50px;
+      left: 15px;
+      right: 15px;
+      top: 0px;
+    }
+    
+    div.a {
+
+    padding: 20px;
+    }
+    
+    ol.a {
+      color: black;
+      font-size: 14px;
+      list-style-type: lower-alpha;
+    }
+    
+    strong.a {
+      padding: 15px;
+      color: black;
+      font-size: 18px;
+      font-weight: bold;
+    }
+    
+    strong.b {
+      padding: 10px;
+      font-size: 18px;
+    }
+    
+    img.a {
+      max-width: 100%;
+      max-height: 100%;
+      position: relative;
+    }
+   
+    </style>
+  </head>
+  <body>
+  
+  <div id="dropDown">
+    <strong class="b">Please select the case step you would like to view:
+    <select id="caseSteps">
+      <option value="select">Select</option>
+      <option value="changePrice">Change Price</option>
+      <option value="signedContract">Signed Contract</option>
+      <option value="cancellation">Cancellation</option>
+      <option value="credit">Credit</option>
+      <option value="tbiCredit">TBI Credit</option>
+      <option value="serviceChange">Service Change</option>
+    </select></strong>
+  </div>
+  <div id="picDiv" >
+  <br>
+   <img class="a" src="http://www.todaysmotorvehicles.com/FileUploads/image/Republic-Truck-image.jpg?w=736&h=414&mode=crop">
+  </div>
+  <div id="changePriceDiv" style="display:none">
+  <br>
+    <strong class="a">Changing Price for a Residential Customer:</strong>
+    <br>
+        <ol>
+          <li>Search for a customer using service address, name, account name, phone or email.
+          <li>Click appropriate site and launch Compass to refer to rate options.</li>
+          <li>Click <b style="color:blue">NEW CASE</b> from <b style="color:red">Active Site or Active Asset.</b></li>
+          <li>Case Record Type = Non-Service</li>
+          <li>Case Type = <b style="color:red">SALES</b></li>
+          <li>Sub-Type = <b style="color:red">CHANGE IN PRICE</b></li>
+          <li>Status = <b style="color:red">ACTION REQUIRED</b></li>
+          <li><b>IF SAVE:</b></li>
+          <ol class="a">
+            <li>No Charge Reason = <b style="color:red">PRICE INCREASE ROLLBACK</b></li>
+            <li>Copy/Paste template into Request Description and fill out:<br>
+            <br>    
+            New Rate:<br>
+            Effective Date:<br>
+            Reason:<br> 
+            Competitor Name:<br>
+            Competitor Price:<br></li>
+            <br>
+            <li>Click <b>Save</b></li>
+          </ol>
+        <li>Click <b style="color:blue">CHANGE</b> next to Case Owner</li>
+        <li>Change to Queue DO NOT CHECK SEND EMAIL</li>
+        <li>Select Queue = <b style="color:blue">Existing Account Change - Resi (CE)</b></li>
+        </ol>
+  </div>
+  <div id="signedContractDiv" style="display:none">
+  <br>
+    <strong class="a">Submitting a Signed Contract for a Residential customer:</strong>
+          <br>
+          <ol>
+            <li>Search for a customer using service address, name, account name, phone or email.
+            <li>Click appropriate site and launch Compass to refer to rate options.</li>
+            <li>Click <b style="color:blue">NEW CASE</b> from <b style="color:red">Active Site or Active Asset.</b>/li>
+            <li>Case Record Type = Non-Service</li>
+            <li>Case Type = <b style="color:red">SALES</b></li>
+            <li>Sub-Type = <b style="color:red">CHANGE IN PRICE</b></li>
+            <li>Status = <b style="color:red">ACTION REQUIRED</b></li>
+            <li><b>IF SIGNED CONTRACT:</b></li>
+              <ol class="a">
+                <li>No Charge Reason = <b style="color:red">CUSTOMER SAVE / COMPETITIVE RESPONSE</b></li>
+                <li><b>Save</b></li>
+                <li>From Case saved screen scroll down to Attachments section and click <b style="color:blue">ATTACH</b></li>
+                <li>Find and select the correct signed .pdf document </li>
+                <li><b>Save</b></li>
+              </ol>
+          <li>In the request description write:<br>
+          <br>
+          Signed 2 year Contract attached.<br>
+          (your name)</li><br>
+          <li>Click <b>Save</b></li>
+          <li>Click <b style="color:blue">CHANGE</b> next to Case Owner</li>
+          <li>Change to Queue DO NOT CHECK SEND EMAIL</li>
+          <li>Select Queue = <b style="color:blue">Existing Account Change - Resi (CE)</b></li>
+          </ol>
+  </div>
+  <div id="cancellationDiv" style="display:none">
+  <br>
+    <strong class="a">Cancelling a Residential Customer:</strong>
+    <br>
+    <ol>
+      <li>Search for customer using service address, name, account name, phone or email - and open.</li>
+      <li>Select the appropriate <b style ="color:red">ACTIVE Asset</b> you're going to close.</li>
+      <li>Click the <b style="color:blue">CLOSE ASSET</b> button</li>
+      <li>Enter the close date</li>
+      <ol class = "a">
+        <li>Close date is the end of the month. If customer is not going to be at the residence for the entirety of the
+        month credit the remaining difference <b style="color:red">IF THEY REQUEST IT ONLY</b></li>
+      </ol>
+      <li>Close Reason = Select most appropriate reason.</li>
+      <li>Sub Type = <b style ="color:red">RESIDENTIAL</b></li>
+      <li>Click <b strong="color:blue">GET REMOVAL DATE</b></li>
+      <li>Request Description = Why did they call, why are they cancelling etc.</li>
+      <li>Click <b style="color:blue">Submit</b></li>
+    </ol>  
+  </div>
+  <div id="creditDiv" style="display:none">
+  <br>
+    <strong class="a">Create Credit for Residential Customer:</strong>
+    <br>
+    <ol>
+      <li>Search for customer using service address, name, account name, phone or email - and open.</li>
+      <li>Select the correct asset from <b style="color:red">ACTIVE Assets</b></li>
+      <li>From Account Details Tab, click <b style="color: blue">RECONCILIATION</b>
+      to view customer's invoices and select the appropriate invoice to see the details.</li>
+      <li>From the Asset Tab, click the <b style="color:blue">CREATE CREDIT</b> button</li>
+      <li>Use the <b style="color:blue">Calculator Tool</b> on the tracker to determine the total for the credit</li>
+      <li>Enter Date</li>
+      <ol class="a">
+        <li>For one-time charges: Charge <b style="color:red">FROM</b> and <b style="color:red">TO</b> 
+        dates are the the date the charge occured</li>
+        <li>For regular service charges: Charge <b style="color:red">FROM</b> and <b style="color:red">TO</b> 
+        dates are the customer's <b style="color:red">invoice billing cycle.</b></li>
+      </ol>
+      <li>Select appropriate <b style="red">CORE CHARGE</b>.</li>
+      <li>Select appropriate Credit Reason</li>
+      <li>Enter <b style="red">CORE CHARGE AMOUNT</b></li>
+      <li>In the Request Description leave a brief explanation of the credit and the amount.</li>
+      <li>Click <b style="color:blue">SUBMIT</b> - This will also automatically create a case for the Credit.</li>
+    </ol>  
+    
+  </div>
+  <div id="tbiCreditDiv" style="display:none">
+    <br>
+    <strong class="a">To be Invoiced (TBI) Credit for Residential Customer:</strong>
+    <br>
+    <ol>
+      <li>Search for customer using service address, name, account name, phone or email - and open.</li>
+      <li>Select the correct asset from <b style="color:red">ACTIVE Assets</b></li>
+      <li>From Account Details Tab, click <b style="color: blue">RECONCILIATION</b>
+      to view customer's invoices and select the appropriate invoice to see the details.</li>
+      <li>From the Asset Tab, click the <b style="color:blue">CREATE TBI</b> button</li>
+      <li>Enter Date</li>
+      <ol class="a">
+        <li>For one-time charges: Charge <b style="color:red">FROM</b> and <b style="color:red">TO</b> 
+        dates are the the date the charge occured</li>
+        <li>For regular service charges: Charge <b style="color:red">FROM</b> and <b style="color:red">TO</b> 
+        dates are the customer's <b style="color:red">invoice billing cycle.</b></li>
+      </ol>
+      <li>Select appropriate Credit Reason</li>
+      <li>Enter Credit Amount</li>
+      <li>Click <b style="color:blue">SUBMIT</b> - This will also automatically create a case for the TBI Credit.</li>
+    </ol>
+  </div>
+  <div id="serviceChangeDiv" style="display:none">
+    <br>
+    <strong class="a">Change in Service for Residential Customer:</strong>
+    <br>
+    <ol>
+      <li>Search for customer using service address, name, account name, phone or email - and open.</li>
+      <li>Select the correct asset from <b style="color:red">ACTIVE Assets</b></li>
+      <li>Click <b style="color:blue">NEW CASE</b> from <b style="color:red">Active Site or Active Asset.</b></li>
+      <li>Case Record Type = <b style="color:red">NON-SERVICE</b></li>
+      <li>Case Type = <b style="color:red">SALES</b></li>
+      <li>Status = <b style="color:red">ACTION REQUIRED</b></li>
+      <li>Requestion Description = </li>
+      <ol class="a">
+        <li>Copy/Paste template into Request Description and fill out:
+        <br><br>
+        Current Service:<br>
+        New Service:<br>
+        Container Type/Size:<br>
+        Effective Date:<br>
+        Delivery Required (Y or N)<br>
+        Rate Quoted: $<br>
+        Advised of Fees: (Y or N)<br>
+        Reason:<br>
+        </li>
+        <br>
+      </ol>
+      <li>Click <b style="color:blue">Save</b>
+      <li>Change Owner <b style="color:red">DO NOT CHECK SEND EMAIL</b></li>
+      <li>Select Queue = <b style="color:blue">Existing Account Change - Resi (CE)</b></li>
+    </ol>
+  </div>
+  
+  <script type="text/javascript" src="js/script.js"></script>
+  <script>
+
+//************************************************************************************************************
+//                                              PAGE SETUP
+//************************************************************************************************************
+     
+  //Listen for change of Case Step Drop down and call correct function
+  var select = document.getElementById('caseSteps'),
+  onChange = function(event) {
+    var priceDiv = this.options[this.selectedIndex].value === "changePrice";
+    var contractDiv = this.options[this.selectedIndex].value === "signedContract";
+    var cancelDiv = this.options[this.selectedIndex].value === "cancellation";
+    var creditDiv = this.options[this.selectedIndex].value === "credit";
+    var tbiDiv = this.options[this.selectedIndex].value === "tbiCredit";
+    var servChDiv = this.options[this.selectedIndex].value === "serviceChange";
+    var pDiv = this.options[this.selectedIndex].value === "select";
+    
+    document.getElementById('picDiv').style.display = 'none';
+    document.getElementById('changePriceDiv').style.display = priceDiv ? 'block' : 'none';
+    document.getElementById('signedContractDiv').style.display = contractDiv ? 'block' : 'none';
+    document.getElementById('cancellationDiv').style.display = cancelDiv ? 'block' : 'none';
+    document.getElementById('creditDiv').style.display = creditDiv ? 'block' : 'none';
+    document.getElementById('tbiCreditDiv').style.display = tbiDiv ? 'block' : 'none';
+    document.getElementById('serviceChangeDiv').style.display = servChDiv ? 'block' : 'none';
+    document.getElementById('picDiv').style.display = pDiv ? 'block' : 'none';
+  }
+  
+  // attach event handler
+  if (window.addEventListener) {
+    select.addEventListener('change', onChange, false);
+  } else {
+    // of course, IE < 9 needs special treatment
+    select.attachEvent('onchange', function() {
+      onChange.apply(select, arguments);
+    });
+  }
+  
+  
+
+
+     
+  </script>
+
+  </body>
+</html>
+
+

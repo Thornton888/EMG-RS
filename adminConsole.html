@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<!-- RS BLUE #1f3f74-->
+<html>
+  <head>
+    <base target="_top">
+    <link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons1.css">
+  </head>
+  <body>
+   <div>
+     <form id="form">
+     <div id="formDiv">
+     <table>
+       <tr>
+         <td>
+           <p>Outbound Calls:</p>
+         </td>
+         <td>
+           <input type="text" id="outbound" name="outbound"/>
+         </td>
+       </tr>
+       <tr>
+          <td>
+            <p>Inbound Calls:</p>   
+          </td>
+          <td>
+            <input type="text" id="inbound" name="inbound"/>
+          </td>
+       </tr>
+     </table>
+       <input type="button" id="submit" name="submit" value="Submit"/>
+       <input type="button" class="action" id="changeFees" value="Change Fees" id="showFeeDiv"/>
+     </div>
+     </form>
+   </div>
+   <form id="feeForm">
+     <div id="feeDiv" style="display:none">
+       <table>
+         <tr>
+           <td>Current Admin:</td>
+           <td><div id="curAdm"></div>
+         </tr>
+         <tr></tr>
+         <tr></tr>
+       </table>
+     </div>
+   </form>
+  </body>
+  <script>
+  function getCurrentAdmin(){//curAdm
+    google.script.run.withSuccessHandler(setCurrentAdmin()).getAdmin();
+  }
+  
+  function getCurrentERF(){
+    google.script.run.withSuccessHandler(setCurrentERF()).getERF();
+  }
+  
+  function getCurrentFRF(){
+    google.script.run.withSuccessHandler(setCurrentFRF()).getFRF();
+  }
+  
+  function setCurrentAdmin(adm){
+    var admin = adm;
+    document.getElementById("contract1").innerHTML = "$" +
+  }
+  
+  function setCurrentERF(sErf){
+    var erf = sErf;
+  }
+  
+  function setCurrentFRF(sFrf){
+    var frf = sFrf;
+  }
+  
+  $(document).ready(function(){
+    $("#showFeeDiv").on("click", function() {
+         $("#FeeDiv").slideToggle();
+    });
+   });
+   
+   
+  </script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
