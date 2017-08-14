@@ -81,13 +81,23 @@ function authenticationPrompt(){
   } else if(button = ui.Button.CANCEL){
     return;
   }
-  
 }
 
 function adminSetCalls(inbound, outbound) {
-  var curDate = formatDate();
+  Logger.log('adminSetCalls! ' + inbound + ' ' + outbound);
+  /*var curDate = formatDate();
+  var row = findCell(curDate);
+  Logger.log('row = ' + row);
   
-  
+  if(cell === -1)
+    return false;
+  else {
+    var outboundCell = sheet.getRange(row, 1);
+    var inboundCell = sheet.getRange(row, 2);
+    outboundCell.setValue(outbound);
+    inboundCell.setValue(inbound);
+    return true;
+  }*/
 }
     
 function subCalc(waste, recy, del, adm, frf, erf, county, frfObj, bool){
@@ -448,6 +458,45 @@ function getFRF(){
 function getERF(){
   return 15.00;
 }
+
+function findCell(str){
+  var search = str.toString();
+  var ss = SpreadsheetApp.openById(41457026);
+  SpreadsheetApp.setActiveSheet(ss);
+  var range = "A:A";
+  var column = sheet.getRange(range);
+  var values = column.getValues();
+  var row = 0;
+  
+  while(values[row] && values[row][0] !== search){
+    row++;
+  }
+  
+  if (values[row][0] === search)
+    return row + 1;
+  else
+    return -1;
+  
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   
   
 

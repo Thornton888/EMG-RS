@@ -54,7 +54,7 @@ Page for displaying case steps and managing case step information
   <body>
   
   <div id="dropDown">
-    <strong class="b">Please select the case step you would like to view:
+    <strong class="b">Select the case step you would like to view:
     <select id="caseSteps">
       <option value="select">Select</option>
       <option value="changePrice">Change Price</option>
@@ -63,6 +63,13 @@ Page for displaying case steps and managing case step information
       <option value="credit">Credit</option>
       <option value="tbiCredit">TBI Credit</option>
       <option value="serviceChange">Service Change</option>
+      <option value="refund">Refund</option>
+      <option value="missedPickup">Missed Pickup</option>
+      <option value="transferDivision">Service Transfer(Same Division)</option>
+      <option value="transfer">Service Transfer(New Division)</option>
+      <option value="accountUpdate">Account Info Update</option>
+      <option value="containerDel">Container Delivery</option>
+      <option value="containerRem">Container Removal</option>
     </select></strong>
   </div>
   <div id="picDiv" >
@@ -228,6 +235,187 @@ Page for displaying case steps and managing case step information
       <li>Select Queue = <b style="color:blue">Existing Account Change - Resi (CE)</b></li>
     </ol>
   </div>
+  <div id="refundDiv" style="display:none">
+    <br>
+    <ol>
+      <li>Search for customer using service address, name, account name, phone or email - and open.</li>
+      <li>Select the correct Account and open.</li>
+      <li>Click <b style="color:blue">NEW CASE</b> from <b style="color:red">ACTIVE Asset</b></li>
+      <li>Case Record Type = <b style="color:red">NON-SERVICE</b></li>
+      <li>Case Type = <b style="color:red">BILLING</b></li>
+      <li>Sub-Type = <b style="color:red">REFUND REQUEST</b></li>
+      <li>Reason = Choose appropriate <b style="color:red">RESOLVED / UNRESOLVED</b></li>
+      <li>Case Status = <b>New</b></li>
+      <li>Request Descriptiong = a brief description of why the customer called.</li>
+      <li>Resolution Comments = what action did you take?</li>
+      <li>Leave Subject as <b style="color:blue">NEW CASE</b></li>
+      <li>Click <b>Save</b></li>
+      <br>
+      <li>Case is automatically submitted and assigned. <b style="color:blue">Check will take typically 2-3 weeks by mail.</b></li> 
+    </ol>
+  </div>
+  <div id="missedPickup" style="display: none">
+    <ol>
+      <li>Search for customer using service address, name, account name, phone or email - and open.</li>
+      <li>Select the correct Account and open.</li>
+      <li>Click <b style="color:blue">NEW CASE</b> from <b style="color:red">ACTIVE Asset</b></li>
+      <li>Case Record Type = <b style="color:red">SERVICE</b></li>
+      <li>Sub-Type = <li>
+          <ol class="a">
+            <li>If Missed Waste Pickup: <b style="color:red">MISSED TRASH - RESIDENTIAL</b></li>
+            <li>If Missed Recycling Pickup: <b style="color:red">MISSED RECYCLING - RESIDENTIAL</b></li>
+            <li>If Missed Yard Waste Pickup: <b style="color:red">MISSED YARD WASTE - RESIDENTIAL</b></li>
+            <li>If Missed Bulk Waste Pickup: <b style="color:red">MISSED BULK PICKUP - RESIDENTIAL</b></li>
+          </ol>
+      <li>Reason = <b style ="color:red">First / Second / Third Missed Pickup</b></li>
+      <li>PO Number/Requested by = Caller's Name<br>
+        If Summary Routed Account = Customer's Address</li>
+      <li>Leave Subject as <b style="color:blue">NEW CASE</b></li>
+      <li>Request Description = Use Template:<br>
+      <br>
+        <b style="color:red">DATE MISSED:</b><br>
+        Caller's Name:<br>
+        Direct Phone Number:<br>
+        <br></li>
+      <li>Click <b>Save</b></li>
+      <li>Click on <b style="color:blue">GET PLAN DATE</b></li>
+      <li>Click <b style="color:blue">SAVE</b></li>
+    </ol>
+  </div>
+  <div id="transferDivision" style="display:none">
+    <br>
+    <ol>
+      <li>Determine if customer has delinquent/written off account at current address.</li>
+      <li>Search for requested service address.</li>
+      <li>If the customer has a past due balance that must be paid first.</li>
+      <ol class="a">
+        <li>If customer is willing to pay, transfer customer back to Customer Service to make the payment.</li>
+        <li>If customer refuses, you can credit if supervisor approved.</li>
+      </ol>
+      <li>Located correct account and open - verify whether there is a <b style="color:red">ACTIVE</b> service/asset.</li>
+      <li>Click <b style="color:blue">NEW QUICK CREATE</b> to check for service rates at new location</li>
+      <li>Customer Category = <b style="color:red">RESIDENTIAL</b></li>
+      <li>Complete the Site Address Information.</li>
+      <li>Click <b style="color:blue">VERIFY ADDRESS</b> if verified, select box.</li>
+      <li>Click <b style="color:blue">LAUNCH COMPASS</b> or go to maps to launch compass to check for service rates at new location.</li>
+      <li>Open Residential Open Market document or appropriate contract/HOA document.</li>
+      <li>Locate pricing information for the products/services needed.</li>
+       <li><strong>Confirm rates, pricing, and service with the Customer.</strong></li>
+      <li>Click <b style="color:blue">NEW CASE</b> from <b style="color:red">ACTIVE/CURRENT</b> Site that will need to be closed.</li>
+      <li>Case Record Type = <b style="color:red">NON-SERVICE</b></li>
+      <li>Case Type = <b style="color:red">SALES</b></li>
+      <li>Sub-Type = <b style="color:red">CHANGE IN SERVICE</b></li>
+      <li>Status = <b style="color:red">ACTION REQUIRED</b></li>
+      <ol class="a">
+        <li>Request Description = Use template:<br><br>
+        Phone:<br>
+        New Address:<br>
+        Current Servoce:<br>
+        New Service:<br>
+        Container Type/Size:<br>
+        Effective Date:<br>
+        Rate Quoted: $<br>
+        Container Removal (Y/N):<br>
+        Advised Customer of REMOVAL or DEL FEE (Y/N):
+        <br>
+        </li><br>
+      </ol>
+      <li>Click <b style="color:blue">SAVE</b></li>
+      <li>From Case saved screen, click <b sthyle="color:blue">CHANGE</b>next to Case Owner</li>
+      <li>Select Queue = <b style="color:red">EXISTING ACCOUNT CHANGE - RESI (CE)</b></li>
+      <li>Click <b style="color:blue">SAVE</b></li>      
+    </ol>
+    </div>
+    
+    <div id="transfer" style="display:none">
+      <br>
+      <ol>
+        <li>Determine if customer has delinquent/written off account at current address.</li>
+        <li>Search for requested service address.</li>
+        <li>Located correct account and open - verify whether there is an <b style="color:red">ACTIVE</b> service/asset.</li>
+        <li>Click <b style="color:blue">NEW QUICK CREATE</b> to check for service rates at new location</li>
+        <li>Complete the <b style="color:blue">Site Address information.</b></li>
+        <li>Customer Category = <b style="color:red">RESIDENTIAL</b></li>
+        <li>Complete the Site Address Information.</li>
+        <li>Select the box for <b style="color">Use Site as Billing Address</b> or enter their billing address.</li>
+        <li>Click <b style="color:blue">VERIFY ADDRESS</b> if verified, select box.</li>
+        <li>Click <b style="color:blue">LAUNCH COMPASS</b> or go to maps to launch compass to check for service rates at new location.</li>
+        <li>Open Residential Open Market document or appropriate contract/HOA document.</li>
+        <li>Locate pricing information for the products/services needed.</li>
+        <li><strong>Confirm rates, pricing, and service with the Customer.</strong></li>
+        <li>on the Quick Create, complete the <b style="color:blue">Expected Service Start Date</b></li>
+        <li>Complete the <b style="color:blue">Order Details</b> by entering the information from the Compass document.</li>
+        <li>Select the <b style="color:blue">ADD ORDER</b> button to enter more products/services.</li>
+        <li>In Compass, verify if there are any extra fees in this area.</li>
+        <li>Complete Other Details</li>
+        <ol class="a">
+          <li>Notes/Direction = Use this template:<br><br>
+          Existing Customer Transfer Service:<br>
+          Close Old Site #:<br>
+          Close Date: <b style="color:red">Must be end of a month</b><br>
+          Container Removal? (Y/N):<br>
+          <br></li>
+        </ol>
+        <li>Click <b style="color:blue">Submit</b></li>
+        <br>
+      </ol>
+    </div>
+    <div id="accountUpdate" style="display:none">
+      <ol>
+        <li>Search for customer using service address, name, account name, phone or email - and open.</li>
+        <li>Locate correct account and open.</li>
+        <li>Open the <strong> Site </strong> or <strong> contract </strong> record you are trying to edit.</li>
+        <li>Click <b style="color:blue">EDIT</b> and change any allowable fields.</li>
+          <ol class="a">
+            <li>If you cannot edit the information needed, Change Status to <b style="color:red">ACTION REQUIRED</b> and<br>  
+            change queue to <b style="color:red">EXISTING ACCOUNT CHANGE RESI</b></li>
+          </ol> 
+        <li>Click <b style="color:blue">NEW CASE</b> from Active Site or Active Asset</li>
+        <li>Case Record Type = <b style="color:red">NON-SERVICE</b></li>
+        <li>Sub Type = <b style="color:red">UPDATE ACCOUNT INFORMATIOn</b></li>
+        <li>Case Status = Leave as <strong>New</strong></li>
+        <li>Request Description = Why did they call?</li>
+        <li>Resolution Comments = What action did you take?</li>
+        <li>Leave Subject as <strong> New Case </strong></li>
+        <li>Click <b style="color:blue">SAVE</b></li>
+      </ol>
+    </div>
+    <div id="containerDel" style="display: none">
+    <br>
+      <ol>
+        <li>Search for customer using service address, name, account name, phone or email - and open.</li>
+        <li>Locate correct account and open <b style="color:red">ACTIVE Site</b></li>
+        <li>Check Asset Rates and verify no charge services policy</li>
+        <li>Click <b style="color:blue">LAUNCH COMPASS</b> or go to maps to launch compass to check for service rates at new location.</li>
+        <li>Click <b style="color:blue">NEW CASE</b> from  <b style="color:red">ASSET PAGE / ACTIVE Asset</b></li>
+        <li>Case Record Type = <b style="color:red">SERVICE</b></li>
+        <li>Sub-Type = <b style="color:red">DELIVERY</b></li>
+        <li>Reason = <b style="color:red">STANDARD / NO CHARGE</b></li>
+        <li>PO Number/Requested by = Caller's Name<br>
+        If Summary Routed Account = Customer's Address</li>
+        <li>Leave Subject = <b style="color:blue">NEW CASE</b></li>
+        <li>Request Description = Any required service information/detials.</li>
+        <li>Click <b style="color:blue">SAVE</b></li>
+        <li>Click on <b style="color:blue">GET PLAN DATE</b></li>
+        <li>Click <b style="color:blue">SAVE</b></li>
+      </ol>
+    </div>
+    <div id="containerRem" style="display: none">
+      <ol>
+        <li>Search for customer using service address, name, account name, phone or email - and open.</li>
+        <li>Locate correct account and open <b style="color:red">ACTIVE Site</b></li>
+        <li>Verify <strong> Service History</strong> to be sure removal isn't already scheduled.</li>
+        <li>Type = <b style="color:red">SERVICE</b></li>
+        <li>Sub Type = <b style="color:red">REMOVAL</b></li>
+        <li>PO Number/Requested by = Caller's Name<br>
+        If Summary Routed Account = Customer's Address</li>
+        <li>Leave Subject = <b style="color:blue">NEW CASE</b></li>
+        <li>Request Description = Include Removal Details</li>
+        <li>Click <b style="color:blue">SAVE</b></li>
+        <li>Click on <b style="color:blue">GET PLAN DATE</b></li>
+        <li>Click <b style="color:blue">SAVE</b></li>
+      </ol>
+    </div>
   
   <script type="text/javascript" src="js/script.js"></script>
   <script>
@@ -246,6 +434,13 @@ Page for displaying case steps and managing case step information
     var tbiDiv = this.options[this.selectedIndex].value === "tbiCredit";
     var servChDiv = this.options[this.selectedIndex].value === "serviceChange";
     var pDiv = this.options[this.selectedIndex].value === "select";
+    var rDiv = this.options[this.selectedIndex].value === "refund";
+    var missedPickup = this.options[this.selectedIndex].value === "missedPickup";
+    var transferDivision = this.options[this.selectedIndex].value === "transferDivision";
+    var transfer = this.options[this.selectedIndex].value === "transfer";
+    var accountUpdate = this.options[this.selectedIndex].value === "accountUpdate";
+    var containerDel = this.options[this.selectedIndex].value === "containerDel";
+    var containerRem = this.options[this.selectedIndex].value === "containerRem";
     
     document.getElementById('picDiv').style.display = 'none';
     document.getElementById('changePriceDiv').style.display = priceDiv ? 'block' : 'none';
@@ -255,6 +450,13 @@ Page for displaying case steps and managing case step information
     document.getElementById('tbiCreditDiv').style.display = tbiDiv ? 'block' : 'none';
     document.getElementById('serviceChangeDiv').style.display = servChDiv ? 'block' : 'none';
     document.getElementById('picDiv').style.display = pDiv ? 'block' : 'none';
+    document.getElementById('refundDiv').style.display = rDiv ? 'block' : 'none';
+    document.getElementById('missedPickup').style.display = missedPickup ? 'block' : 'none';
+    document.getElementById('transferDivision').style.display = transferDivision ? 'block' : 'none';
+    document.getElementById('transfer').style.display = transfer ? 'block' : 'none';
+    document.getElementById('accountUpdate').style.display = accountUpdate ? 'block' : 'none';
+    document.getElementById('containerDel').style.display = containerDel ? 'block' : 'none';
+    document.getElementById('containerRem').style.display = containerRem ? 'block' : 'none';
   }
   
   // attach event handler

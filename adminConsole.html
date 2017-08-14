@@ -32,6 +32,9 @@
      </div>
      </form>
    </div>
+   <div id="responseDiv">
+   
+   </div>
    <form id="feeForm">
      <div id="feeDiv" style="display:none">
        <table>
@@ -50,8 +53,16 @@
     var inbound = document.getElementById('inbound').value;
     var outbound = document.getElementById('outbound').value;
   
-    google.script.run.withSuccessHandler().get(adminSetCalls(inbound, outbound));
+    google.script.run.withSuccessHandler().adminSetCalls(inbound, outbound);
   
+  }
+  
+  function displaySuccessMessage(bool){
+    if(bool == false){
+      document.getElementById("responseDiv").innerHTML = "Today's date not found, please check column in A General sheet.";
+    else {
+      document.getElementById("responseDiv").innerHtml = "Submit Successful!";
+    }
   }
   
   function getCurrentAdmin(){//curAdm
