@@ -27,7 +27,7 @@
           </td>
        </tr>
      </table>
-       <input type="button" id="submit" name="submit" value="Submit"/>
+       <input type="button" id="submit" name="submit" value="Submit" onclick="setCalls()"/>
        <input type="button" class="action" id="changeFees" value="Change Fees" id="showFeeDiv"/>
      </div>
      </form>
@@ -46,6 +46,14 @@
    </form>
   </body>
   <script>
+  function setCalls(){
+    var inbound = document.getElementById('inbound').value;
+    var outbound = document.getElementById('outbound').value;
+  
+    google.script.run.withSuccessHandler().get(adminSetCalls(inbound, outbound));
+  
+  }
+  
   function getCurrentAdmin(){//curAdm
     google.script.run.withSuccessHandler(setCurrentAdmin()).getAdmin();
   }

@@ -83,6 +83,12 @@ function authenticationPrompt(){
   }
   
 }
+
+function adminSetCalls(inbound, outbound) {
+  var curDate = formatDate();
+  
+  
+}
     
 function subCalc(waste, recy, del, adm, frf, erf, county, frfObj, bool){
   //TODO STATIC Global Variables pulled from sheets
@@ -144,7 +150,6 @@ function subCalc(waste, recy, del, adm, frf, erf, county, frfObj, bool){
   return Number(total);
  
  }
- 
  
 //Calculate Tax rates for select MN counties
 function taxMN(total, county){
@@ -267,8 +272,6 @@ function frfPrompt(){
     return frfObj;
   }
 }
-
-
 
 function adminWindow(){
   var html = HtmlService.createHtmlOutputFromFile('caseStepsDialog')
